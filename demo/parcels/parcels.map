@@ -23,7 +23,7 @@
 #
 
 MAP
-	INCLUDE "../../geomoose_globals.map"
+	INCLUDE '../../geomoose_globals.map'
 
 	WEB
 		METADATA

@@ -23,13 +23,14 @@
 #
 
 MAP
-	INCLUDE "../../geomoose_globals.map"
+	INCLUDE '../../geomoose_globals.map'
 
 	WEB
 		METADATA
-			'ows_title' "scalebar"
+			'ows_title' 'scalebar'
 			'ows_enable_request' '!*'
 			'wms_enable_request' '*'
+			INCLUDE '../../common_metadata.map'
 		END
 	END
 
@@ -54,15 +55,15 @@ MAP
 
 	# Dummy layer to call for displaying the scalebar in WMS
 	LAYER
-		NAME "scalebar_km"
+		NAME 'scalebar_km'
 		STATUS ON
 		TYPE polygon
 		PROJECTION
-			"init=epsg:4326"
+			'init=epsg:4326'
 		END
 		METADATA
-			"wms_title" "Scalebar (km)"
-			"wms_extent" "-180 -80 180 80"
+			'wms_title' 'Scalebar (km)'
+			'wms_extent' '-180 -80 180 80'
 		END
 	END
 END

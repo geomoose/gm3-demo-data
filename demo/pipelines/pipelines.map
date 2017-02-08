@@ -27,11 +27,12 @@
 #
 
 MAP
-	INCLUDE "../../geomoose_globals.map"
+	INCLUDE '../../geomoose_globals.map'
 
 	WEB
 		METADATA
 			'ows_title' 'Pipelines'
+			INCLUDE '../../common_metadata.map'
 		END
 	END
 
@@ -40,9 +41,9 @@ MAP
 		STATUS ON
 
 		METADATA
-			"ows_title" "Pipelines"
-			"ows_include_items" "all"
-			"gml_include_items" "all"
+			'ows_title' 'Pipelines'
+			'ows_include_items' 'all'
+			'gml_include_items' 'all'
 		END
 
 		TYPE LINE
@@ -60,7 +61,7 @@ MAP
 			NAME 'Pipelines'
 			STYLE
 				WIDTH 3
-				COLOR "#4894FF"
+				COLOR '#4894FF'
 			END
 
 			LABEL

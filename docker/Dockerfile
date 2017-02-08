@@ -134,10 +134,11 @@ RUN chmod 755 /usr/lib/cgi-bin
 ## Install the GeoMoose demo data
 
 # create a new directory
-RUN mkdir -p /data
+# RUN mkdir -p /data
 
 # clone the data repo into a useful directory.
-RUN cd /data && git clone https://github.com/geomoose/gm3-demo-data.git
+RUN sudo git clone https://github.com/geomoose/gm3-demo-data.git /data
+RUN sudo chown www-data:www-data -R /data
 
 # Restart Apache
 RUN sudo service apache2 restart
@@ -145,5 +146,6 @@ RUN sudo service apache2 restart
 EXPOSE 80
 
 ENV HOST_IP `ifconfig | grep inet | grep Mask:255.255.255.0 | cut -d ' ' -f 12 | cut -d ':' -f 2`
+
 
 CMD ["/usr/bin/supervisord"]

@@ -27,13 +27,14 @@
 #
 
 MAP
-	INCLUDE "../../geomoose_globals.map"
+	INCLUDE '../../geomoose_globals.map'
 
 	NAME 'utf8_polys'
 
 	WEB
 		METADATA
 			'ows_title' 'International Characters Testing Layer'
+			INCLUDE '../../common_metadata.map'
 		END
 	END
 
@@ -42,9 +43,9 @@ MAP
 		STATUS ON
 
 		METADATA
-			"ows_title" "i18n tests"
-			"ows_include_items" "all"
-			"gml_include_items" "all"
+			'ows_title' 'i18n tests'
+			'ows_include_items' 'all'
+			'gml_include_items' 'all'
 		END
 
 		TYPE POLYGON
@@ -52,7 +53,7 @@ MAP
 		DATA './utf8_polys.shp'
 
 		PROJECTION
-			"init=epsg:26915"
+			'init=epsg:26915'
 		END
 
 		LABELITEM 'name'
