@@ -32,7 +32,7 @@ MAP
 	END
 
 	LAYER
-		NAME parcels_poly
+		NAME parcels 
 		GROUP parcels_group
 		STATUS ON
 
