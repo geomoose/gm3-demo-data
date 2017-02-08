@@ -25,19 +25,6 @@
 # A convienent place to setup a bunch of defaults for MapServer
 # so they don't need to be set in every mapfile.
 
-
-
-# Setup Basic OGC Services
-WEB
-	INCLUDE "../../temp_directory.map"
-	METADATA
-		"ows_enable_request"  "*"
-		"wms_srs" "EPSG:4326 EPSG:3857 EPSG:900913"
-		"ows_srs" "EPSG:4326"
-		'wms_feature_info_mime_type' 'application/json'
-	END
-END
-
 UNITS METERS
 PROJECTION
 	"init=epsg:3857"

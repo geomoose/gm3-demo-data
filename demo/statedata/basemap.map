@@ -34,72 +34,6 @@ MAP
 		END
 	END
 
-	LAYER # County Boundary Polygon Outline Layer
-		NAME 'county_borders'
-		STATUS ON
-
-		METADATA
-			'ows_title' 'County Boundaries'
-			'ows_include_items' 'all'
-			'gml_include_items' 'all'
-		END
-
-		TYPE POLYGON
-		DATA './county'
-
-		PROJECTION
-			"init=epsg:26915"
-		END
-
-		MINSCALEDENOM 1000
-		LABELMAXSCALEDENOM 2000000
-		SYMBOLSCALEDENOM 200000
-
-		LABELCACHE ON
-		LABELITEM 'COUNTYNAME'
-
-		CLASS
-			NAME "County Boundary"
-			STYLE
-				WIDTH 3
-				OUTLINECOLOR 210 210 210
-			END
-			LABEL
-				TYPE TRUETYPE
-				FONT vera_sans-bold
-				FORCE TRUE
-				MINSIZE 8
-				SIZE 10
-				MAXSIZE 12
-
-				COLOR 0 0 0
-				OUTLINECOLOR 232 232 232
-				BUFFER 4
-			END
-			MAXSCALEDENOM 1000000
-		END
-		CLASS
-			STYLE
-				WIDTH 20
-				OUTLINECOLOR 0 0 0
-			END
-			LABEL
-				TYPE TRUETYPE
-				FONT vera_sans-bold
-				FORCE TRUE
-				MINSIZE 8
-				SIZE 10
-				MAXSIZE 12
-
-				COLOR 0 0 0
-				OUTLINECOLOR 232 232 232
-				BUFFER 4
-			END
-			MINSCALEDENOM 1000000
-		END
-		TEMPLATE 'dummy'
-	END # County Boundary Polygon Layer
-
 	LAYER # City Boundary Polygon Layer
 		NAME city_poly
 		STATUS ON
@@ -175,4 +109,71 @@ MAP
 		OPACITY 50
 		TEMPLATE 'dummy'
 	END # City Boundary Polygon Layer
+
+
+	LAYER # County Boundary Polygon Outline Layer
+		NAME 'county_borders'
+		STATUS ON
+
+		METADATA
+			'ows_title' 'County Boundaries'
+			'ows_include_items' 'all'
+			'gml_include_items' 'all'
+		END
+
+		TYPE POLYGON
+		DATA './county'
+
+		PROJECTION
+			"init=epsg:26915"
+		END
+
+		MINSCALEDENOM 1000
+		LABELMAXSCALEDENOM 2000000
+		SYMBOLSCALEDENOM 200000
+
+		LABELCACHE ON
+		LABELITEM 'COUNTYNAME'
+
+		CLASS
+			NAME "County Boundary"
+			STYLE
+				WIDTH 3
+				OUTLINECOLOR 210 210 210
+			END
+			LABEL
+				TYPE TRUETYPE
+				FONT vera_sans-bold
+				FORCE TRUE
+				MINSIZE 8
+				SIZE 10
+				MAXSIZE 12
+
+				COLOR 0 0 0
+				OUTLINECOLOR 232 232 232
+				BUFFER 4
+			END
+			MAXSCALEDENOM 1000000
+		END
+		CLASS
+			STYLE
+				WIDTH 20
+				OUTLINECOLOR 0 0 0
+			END
+			LABEL
+				TYPE TRUETYPE
+				FONT vera_sans-bold
+				FORCE TRUE
+				MINSIZE 8
+				SIZE 10
+				MAXSIZE 12
+
+				COLOR 0 0 0
+				OUTLINECOLOR 232 232 232
+				BUFFER 4
+			END
+			MINSCALEDENOM 1000000
+		END
+		TEMPLATE 'dummy'
+	END # County Boundary Polygon Layer
 END ## end Map

@@ -28,6 +28,7 @@ MAP
 	WEB
 		METADATA
 			'ows_title' 'Parcel Maps'
+			INCLUDE '../../common_metadata.map'
 		END
 	END
 

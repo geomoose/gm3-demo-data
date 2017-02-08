@@ -1,0 +1,8 @@
+# Useful global metadata settings,
+#  enabled all WxS requests, sets common projections,
+#  and defaults to JSON for default wms_feature_info
+#
+
+'ows_enable_request'  '*'
+'ows_srs' 'EPSG:4326 EPSG:26915 EPSG:3857 EPSG:900913'
+'wms_feature_info_mime_type' 'application/json'
