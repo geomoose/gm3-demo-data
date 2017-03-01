@@ -41,6 +41,7 @@ RUN apt-get update && apt-get install -y apache2 apache2-threaded-dev curl
 
 # Configure localhost in Apache
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+RUN echo "ErrorLog /dev/stdout" >> /etc/apache2/apache2.conf
 COPY etc/000-default.conf /etc/apache2/sites-available/
 
 # Install the Apache Worker MPM (Multi-Procesing Modules)
