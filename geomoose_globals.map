@@ -24,12 +24,10 @@
 
 # A convienent place to setup a bunch of defaults for MapServer
 # so they don't need to be set in every mapfile.
-
-UNITS METERS
 PROJECTION
-	"init=epsg:3857"
+    "init=epsg:4326"
 END
-EXTENT -20037508.3427892480 -20037508.3427892480 20037508.3427892480 20037508.3427892480
+EXTENT -179 -90 179 90
 
 
 STATUS ON   # Draw map, not just scalebar
