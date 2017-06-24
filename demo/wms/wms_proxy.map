@@ -29,12 +29,13 @@
 
 MAP
 	INCLUDE '../../geomoose_globals.map'
-	
+
 	WEB
 		METADATA
 			'ows_title' 'Reprojection service for WMS layers'
 			'ows_enable_request' '!*' # WFS doesn't apply to this layer (raster only)
 			'wms_enable_request' '*'  # So only enable WMS
+            'ows_srs' 'EPSG:26915 EPSG:4326 EPSG:3857 EPSG:900913'
 		END
 	END
 
@@ -51,7 +52,7 @@ MAP
 			'init=epsg:26915'
 		END
 		EXTENT -131108.4500000000116415 4505093.2500000000000000 994071.5500000000465661 5715117.7500000000000000
-		
+
 		METADATA
 			# MapServer as a WMS Server
 			'wms_title' 'Minnesota Composite Imagery'
@@ -80,7 +81,7 @@ MAP
 
 		#EXTENT -19978292.563100 -2257063.321686 20025788.871700 11575302.023300
 		EXTENT -20037508.3427892480 -20037508.3427892480 20037508.3427892480 20037508.3427892480
-		
+
 		METADATA
 			# MapServer as a WMS Server
 			'wms_title' 'USGS Topo Map (Large Scale)'
@@ -147,7 +148,7 @@ MAP
 
 		#EXTENT -17886629.271748 1504973.679600 16130518.764000 8715648.014400
 		EXTENT -20037508.3427892480 -20037508.3427892480 20037508.3427892480 20037508.3427892480
-		
+
 		METADATA
 			# MapServer as a WMS Server
 			'wms_title' 'USGS Imagery (Large Scale)'
