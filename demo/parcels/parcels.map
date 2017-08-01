@@ -29,11 +29,14 @@ MAP
 		METADATA
 			'ows_title' 'Parcel Maps'
 			INCLUDE '../../common_metadata.map'
+            'wfs_getfeature_formatlist' 'gml,geojson'
 		END
 	END
 
+    DEBUG 5
+
 	LAYER
-		NAME parcels 
+		NAME parcels
 		GROUP parcels_group
 		STATUS ON
         DUMP TRUE
@@ -46,13 +49,13 @@ MAP
 
 		TYPE POLYGON
 		DATA './parcels.shp'
-		FILTER ([PARC_CODE] == 1)
+		#FILTER ([PARC_CODE] == 1)
 
 		PROJECTION
 			'init=epsg:26915'
 		END
 
-		LABELITEM 'PIN'
+		#LABELITEM 'PIN'
 		LABELCACHE ON
 		LABELMAXSCALE 20000
 

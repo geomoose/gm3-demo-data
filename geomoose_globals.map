@@ -54,3 +54,14 @@ LEGEND
 		COLOR 0 0 0
 	END
 END
+
+
+
+OUTPUTFORMAT
+    NAME "geojson"
+    DRIVER "OGR/GEOJSON"
+    MIMETYPE "application/json" #; subtype=geojson; charset=utf-8"
+    FORMATOPTION "STORAGE=stream"
+    FORMATOPTION "FORM=SIMPLE"
+    FORMATOPTION "LCO:COORDINATE_PRECISION=5"
+END
