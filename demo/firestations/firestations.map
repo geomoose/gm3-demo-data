@@ -64,6 +64,8 @@ MAP
 			END
 		END
 
+        TOLERANCE 10
+
 		TEMPLATE 'dummy'
 	END
 
