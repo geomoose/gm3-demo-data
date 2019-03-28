@@ -1,9 +1,9 @@
 # GeoMoose for Docker
-FROM ubuntu:trusty
+FROM ubuntu:bionic
 MAINTAINER Dan "Ducky" Little <@theduckylittle>
 
 ENV LANG C.UTF-8
-RUN update-locale LANG=C.UTF-8
+# RUN update-locale LANG=C.UTF-8
 
 # Update and upgrade system
 RUN apt-get -qq update --fix-missing && apt-get -qq --yes upgrade
@@ -24,20 +24,13 @@ RUN apt-get install -y \
     libcurl4-gnutls-dev \
     libexempi-dev \
     libgdal-dev \
-    libgeos-dev
-
-# Install libharfbuzz from source as it is not in a repository
-RUN apt-get install -y bzip2
-RUN cd /tmp && wget http://www.freedesktop.org/software/harfbuzz/release/harfbuzz-0.9.19.tar.bz2 && \
-    tar xjf harfbuzz-0.9.19.tar.bz2 && \
-    cd harfbuzz-0.9.19 && \
-    ./configure && \
-    make && \
-    make install && \
-    ldconfig
-
-# Apache 2
-RUN apt-get update && apt-get install -y apache2 apache2-threaded-dev curl
+    libprotobuf-c-dev \
+    protobuf-c-compiler \
+    libpthread-stubs0-dev \
+    libharfbuzz-dev \
+    apache2 \
+    apache2-dev \
+    curl
 
 # Configure localhost in Apache
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
@@ -45,16 +38,10 @@ RUN echo "ErrorLog /dev/stdout" >> /etc/apache2/apache2.conf
 COPY etc/000-default.conf /etc/apache2/sites-available/
 
 # Install the Apache Worker MPM (Multi-Procesing Modules)
-RUN sudo apt-get install apache2-mpm-worker
 
-# To reconcile this, the multiverse repository must be added to the apt sources.
-RUN echo 'deb http://archive.ubuntu.com/ubuntu trusty multiverse' >> /etc/apt/sources.list
-RUN echo 'deb http://archive.ubuntu.com/ubuntu trusty-updates multiverse' >> /etc/apt/sources.list
-RUN echo 'deb http://security.ubuntu.com/ubuntu trusty-security multiverse' >> /etc/apt/sources.list
-RUN sudo apt-get update
-
+# RUN apt-get install apache2-mpm-worker
 # Enable these Apache modules
-RUN sudo a2enmod actions cgi alias
+RUN a2enmod actions cgi alias
 
 # Install supervisor
 RUN apt-get install -y supervisor
@@ -130,7 +117,7 @@ RUN chmod 755 /usr/lib/cgi-bin
 # now create a database and load the data into it.
 # COPY createdb.sh /tmp
 # RUN chmod +x /tmp/createdb.sh
-# RUN sudo service postgresql start ; su - postgres -c "/tmp/createdb.sh"
+# RUN service postgresql start ; su - postgres -c "/tmp/createdb.sh"
 
 ## Install the GeoMoose demo data
 
@@ -138,11 +125,11 @@ RUN chmod 755 /usr/lib/cgi-bin
 # RUN mkdir -p /data
 
 # clone the data repo into a useful directory.
-RUN sudo git clone https://github.com/geomoose/gm3-demo-data.git /data
-RUN sudo chown www-data:www-data -R /data
+RUN git clone https://github.com/geomoose/gm3-demo-data.git /data
+RUN chown www-data:www-data -R /data
 
 # Restart Apache
-RUN sudo service apache2 restart
+RUN service apache2 restart
 
 EXPOSE 80
 
