@@ -44,6 +44,9 @@ MAP
 		STYLE 0 
 		POSTLABELCACHE true 
 		TRANSPARENT OFF
+		# If using MapServer version 7.2+ can use OFFSET to move the scalebar 
+		# into a better position, https://mapserver.org/mapfile/scalebar.html
+		#OFFSET 5 5
 			
 		LABEL 
 			COLOR 0 0 0
