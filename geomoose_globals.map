@@ -35,6 +35,9 @@ SIZE 800 650 # Set default image size if not set in URL
 
 CONFIG "MS_ERRORFILE" "stderr" # Log to apache error.log
 
+# Put MapServer inline with the OGC spec for scale calculations
+# See: WMS 1.3.0 spec Section 7.2.4.6.9
+DEFRESOLUTION 90.7
 
 # Setup paths to fonts and symbols
 # Note: path is (oddly) relative to top level mapfile not this include

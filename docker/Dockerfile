@@ -5,6 +5,8 @@ MAINTAINER Dan "Ducky" Little <@theduckylittle>
 ENV LANG C.UTF-8
 # RUN update-locale LANG=C.UTF-8
 
+RUN apt-get update
+
 # Update and upgrade system
 RUN apt-get -qq update --fix-missing && apt-get -qq --yes upgrade
 
@@ -41,7 +43,7 @@ COPY etc/000-default.conf /etc/apache2/sites-available/
 
 # RUN apt-get install apache2-mpm-worker
 # Enable these Apache modules
-RUN a2enmod actions cgi alias
+RUN a2enmod actions cgi alias headers
 
 # Install supervisor
 RUN apt-get install -y supervisor
@@ -54,30 +56,30 @@ RUN git clone https://github.com/mapserver/mapserver/ /usr/local/src/mapserver
 # Compile Mapserver for Apache
 RUN mkdir /usr/local/src/mapserver/build && \
     cd /usr/local/src/mapserver/build && \
-    cmake ../ -DWITH_THREAD_SAFETY=1 \
-        -DWITH_PROJ=1 \
-        -DWITH_KML=1 \
-        -DWITH_SOS=1 \
-        -DWITH_WMS=1 \
-        -DWITH_FRIBIDI=1 \
-        -DWITH_HARFBUZZ=1 \
-        -DWITH_ICONV=1 \
-        -DWITH_CAIRO=1 \
-        -DWITH_RSVG=1 \
-        -DWITH_MYSQL=1 \
-        -DWITH_GEOS=1 \
-        -DWITH_POSTGIS=1 \
-        -DWITH_GDAL=1 \
-        -DWITH_OGR=1 \
-        -DWITH_CURL=1 \
-        -DWITH_CLIENT_WMS=1 \
-        -DWITH_CLIENT_WFS=1 \
-        -DWITH_WFS=1 \
-        -DWITH_WCS=1 \
-        -DWITH_LIBXML2=1 \
-        -DWITH_GIF=1 \
-        -DWITH_EXEMPI=1 \
-        -DWITH_XMLMAPFILE=1 \
+    cmake ../ -DWITH_THREAD_SAFETY=ON \
+        -DUSE_PROJ=ON \
+        -DWITH_KML=ON \
+        -DWITH_SOS=ON \
+        -DWITH_WMS=ON \
+        -DWITH_FRIBIDI=ON \
+        -DWITH_HARFBUZZ=ON \
+        -DWITH_ICONV=ON \
+        -DWITH_CAIRO=ON \
+        -DWITH_RSVG=ON \
+        -DWITH_MYSQL=ON \
+        -DWITH_GEOS=ON \
+        -DWITH_POSTGIS=ON \
+        -DUSE_GDAL=ON \
+        -DWITH_OGR=ON \
+        -DWITH_CURL=ON \
+        -DWITH_CLIENT_WMS=ON \
+        -DWITH_CLIENT_WFS=ON \
+        -DWITH_WFS=ON \
+        -DWITH_WCS=ON \
+        -DWITH_LIBXML2=ON \
+        -DWITH_GIF=ON \
+        -DWITH_EXEMPI=ON \
+        -DWITH_XMLMAPFILE=ON \
     -DWITH_FCGI=0 && \
     make && \
     make install && \
@@ -100,7 +102,7 @@ RUN chmod 755 /usr/lib/cgi-bin
 # RUN cd tinyows && autoconf && ./configure && make && make install && cp tinyows /usr/lib/cgi-bin/tinyows
 # get rid of tinyows leftovers
 # RUN rm -rf tinyows
-#--with-shp2pgsql=/usr/lib/postgresql/9.5/bin/shp2pgsql 
+#--with-shp2pgsql=/usr/lib/postgresql/9.5/bin/shp2pgsql
 
 # COPY etc/tinyows.xml /etc/tinyows.xml
 
