@@ -9,9 +9,9 @@
 
 The `census.gpkg` is a GeoPackage containing the following U.S. Census Bureau TIGER files for Minnesota:
 
-- Polygon (Places): [tl_2019_27_place.zip](ftp://anonymous@ftp2.census.gov/geo/tiger/TIGER2019/PLACE/tl_2019_27_place.zip)
-- Line (Primary and Secondary Roads):  [tl_2019_27_prisecroads.zip](ftp://anonymous@ftp2.census.gov/geo/tiger/TIGER2019/PRISECROADS/tl_2019_27_prisecroads.zip)
-- Point (Point Landmark): [tl_2019_27_pointlm.zip](ftp://anonymous@ftp2.census.gov/geo/tiger/TIGER2019/POINTLM/tl_2019_27_pointlm.zip)
+- Polygon (Places): ftp://anonymous@ftp2.census.gov/geo/tiger/TIGER2019/PLACE/tl_2019_27_place.zip
+- Line (Primary and Secondary Roads):  ftp://anonymous@ftp2.census.gov/geo/tiger/TIGER2019/PRISECROADS/tl_2019_27_prisecroads.zip
+- Point (Point Landmark): ftp://anonymous@ftp2.census.gov/geo/tiger/TIGER2019/POINTLM/tl_2019_27_pointlm.zip
 
 
 ### Processing
