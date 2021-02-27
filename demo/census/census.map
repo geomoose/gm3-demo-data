@@ -1,0 +1,187 @@
+#
+# The MIT License (MIT)
+#
+# Copyright (c) 2019 GeoMoose.org, Dan "Ducky" Little
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+#
+
+MAP
+    INCLUDE '../../geomoose_globals.map'
+    DEBUG 5
+    WEB
+        METADATA
+            'ows_title' 'GeoMoose Example Census data'
+            INCLUDE '../../common_metadata.map'
+            'wfs_getfeature_formatlist' 'gml,geojson'
+        END
+    END
+    
+    LEGEND
+      STATUS ON
+      KEYSIZE 18 12
+      # LABEL object
+#      LABEL
+#        TYPE BITMAP
+#        SIZE MEDIUM
+#        COLOR 0 0 89
+#      END
+    END
+
+    LAYER
+        NAME census_cities
+        STATUS ON
+        DUMP TRUE
+
+        METADATA
+            'ows_title' 'Cities'
+            'ows_include_items' 'all'
+            'gml_include_items' 'all'
+        END
+
+        CONNECTIONTYPE POSTGIS
+        CONNECTION "host=localhost dbname=gis2 user=postgres password=postgres"
+        DATA "wkb_geometry from census_cities"
+        TYPE POLYGON
+
+        PROJECTION
+            'init=epsg:4269'
+        END
+        
+        LABELCACHE ON
+#       LABELMAXSCALE 20000
+        CLASS
+            NAME 'Cities'
+            STYLE
+                WIDTH 3
+                COLOR -1 -1 -1
+                OUTLINECOLOR 0 0 0
+            END
+            
+            LABEL
+                TEXT "[name]"
+                TYPE TRUETYPE
+                FONT vera_sans
+                SIZE 20
+                ANTIALIAS TRUE
+                COLOR 0 0 0
+                OUTLINECOLOR 254 254 200
+                BUFFER 4
+                MINFEATURESIZE auto
+                PARTIALS FALSE
+                POSITION cc
+            END         
+        END
+        TEMPLATE 'dummy'
+    END
+
+    LAYER
+        NAME census_roads
+        STATUS ON
+        DUMP TRUE
+
+        METADATA
+            'ows_title' 'Roads'
+            'ows_include_items' 'all'
+            'gml_include_items' 'all'
+        END
+
+        CONNECTIONTYPE POSTGIS
+        CONNECTION "host=localhost dbname=gis2 user=postgres password=postgres"
+        DATA "wkb_geometry from census_roads"
+        TYPE LINE
+
+        PROJECTION
+            'init=epsg:4269'
+        END
+
+        CLASS
+            NAME 'Roads'
+            STYLE
+                WIDTH 3
+                COLOR 0 0 254
+            END
+            
+            LABEL
+                TEXT "[fullname]"
+                TYPE TRUETYPE
+                FONT vera_sans
+                SIZE 16
+                ANTIALIAS TRUE
+                COLOR 0 0 0
+                OUTLINECOLOR 254 254 200
+                BUFFER 4
+                MINFEATURESIZE auto
+                PARTIALS FALSE
+                ANGLE AUTO
+                POSITION AUTO
+            END         
+        END         
+            
+        TEMPLATE 'dummy'
+    END
+    
+    LAYER
+        NAME census_landmarks
+        STATUS ON
+        DUMP TRUE
+
+        METADATA
+            'ows_title' 'Landmarks'
+            'ows_include_items' 'all'
+            'gml_include_items' 'all'
+        END
+
+        CONNECTIONTYPE POSTGIS
+        CONNECTION "host=localhost dbname=gis2 user=postgres password=postgres"
+        DATA "wkb_geometry from census_landmarks"
+        TYPE POINT
+
+        PROJECTION
+            'init=epsg:4269'
+        END
+
+        CLASS
+            NAME 'Landmarks'
+            STYLE
+                SYMBOL 'square'
+                SIZE 10
+                COLOR 255 0 0
+                OUTLINECOLOR 0 0 0
+            END
+            
+            LABEL
+                TEXT "[fullname]"
+                TYPE TRUETYPE
+                FONT vera_sans
+                SIZE 16
+                ANTIALIAS TRUE
+                COLOR 0 0 0
+                OUTLINECOLOR 254 254 200
+                BUFFER 4
+                MINFEATURESIZE auto
+                PARTIALS FALSE
+                ANGLE AUTO
+                POSITION AUTO
+            END             
+        END
+        TEMPLATE 'dummy'
+    END
+
+END ## end Map
