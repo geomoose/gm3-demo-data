@@ -47,7 +47,6 @@ MAP
     LAYER
         NAME census_cities
         STATUS ON
-        DUMP TRUE
 
         METADATA
             'ows_title' 'Cities'
@@ -94,7 +93,6 @@ MAP
     LAYER
         NAME census_roads
         STATUS ON
-        DUMP TRUE
 
         METADATA
             'ows_title' 'Roads'
@@ -140,7 +138,6 @@ MAP
     LAYER
         NAME census_landmarks
         STATUS ON
-        DUMP TRUE
 
         METADATA
             'ows_title' 'Landmarks'
