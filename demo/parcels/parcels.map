@@ -39,7 +39,6 @@ MAP
 		NAME parcels
 		GROUP parcels_group
 		STATUS ON
-        DUMP TRUE
 
 		METADATA
 			'ows_title' 'Parcel Polygons'

@@ -36,7 +36,6 @@ MAP
 	LAYER
 		NAME grid_1km
 		STATUS ON
-		DUMP TRUE
 
 		METADATA
 			'ows_title' '1000m Grid'
@@ -64,7 +63,6 @@ MAP
 	LAYER
 		NAME grid_1mile
 		STATUS ON
-		DUMP TRUE
 
 		METADATA
 			'ows_title' '1 mile Grid'
