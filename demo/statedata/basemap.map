@@ -112,7 +112,7 @@ MAP
 				PRIORITY 4
 			END
 		END
-		OPACITY 50
+#		OPACITY 50
 		TEMPLATE 'dummy'
 	END # City Boundary Polygon Layer
 
