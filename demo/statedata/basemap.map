@@ -112,7 +112,7 @@ MAP
 				PRIORITY 4
 			END
 		END
-		COMPOSITE
+        COMPOSITE
           OPACITY 50
         END
 		TEMPLATE 'dummy'
