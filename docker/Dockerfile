@@ -34,11 +34,6 @@ RUN apt-get install -y \
     apache2-dev \
     curl
 
-# Configure localhost in Apache
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
-RUN echo "ErrorLog /dev/stdout" >> /etc/apache2/apache2.conf
-COPY etc/000-default.conf /etc/apache2/sites-available/
-
 # Install the Apache Worker MPM (Multi-Procesing Modules)
 
 # RUN apt-get install apache2-mpm-worker
@@ -89,6 +84,11 @@ RUN mkdir /usr/local/src/mapserver/build && \
 RUN chmod o+x /usr/local/bin/mapserv
 RUN ln -s /usr/local/bin/mapserv /usr/lib/cgi-bin/mapserv
 RUN chmod 755 /usr/lib/cgi-bin
+
+# Configure localhost in Apache
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+RUN echo "ErrorLog /dev/stdout" >> /etc/apache2/apache2.conf
+COPY etc/000-default.conf /etc/apache2/sites-available/
 
 # Install TinyOWS
 
