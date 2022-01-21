@@ -58,7 +58,8 @@ LEGEND
 	END
 END
 
-
+#set default imagetype, useful for map2img tests
+IMAGETYPE PNG
 
 OUTPUTFORMAT
     NAME "geojson"
