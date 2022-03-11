@@ -44,7 +44,7 @@ MAP
 		NAME 'mncomp'
 		STATUS ON
 
-		CONNECTION 'http://geoint.lmic.state.mn.us/cgi-bin/mncomp?'
+		CONNECTION 'https://imageserver.gisdata.mn.gov/cgi-bin/mncomp?'
 		CONNECTIONTYPE WMS
 		TYPE RASTER
 
