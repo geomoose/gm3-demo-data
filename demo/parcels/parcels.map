@@ -33,7 +33,7 @@ MAP
 		END
 	END
 
-    DEBUG 5
+    #DEBUG 5
 
 	LAYER
 		NAME parcels

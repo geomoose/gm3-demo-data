@@ -24,7 +24,7 @@
 
 MAP
     INCLUDE '../../geomoose_globals.map'
-    DEBUG 5
+    #DEBUG 5
     WEB
         METADATA
             'ows_title' 'GeoMoose Example Census data'
