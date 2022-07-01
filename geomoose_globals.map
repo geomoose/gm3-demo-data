@@ -22,7 +22,7 @@
 # SOFTWARE.
 #
 
-# A convienent place to setup a bunch of defaults for MapServer
+# A convenient place to setup a bunch of defaults for MapServer
 # so they don't need to be set in every mapfile.
 PROJECTION
     "init=epsg:4326"
@@ -33,7 +33,7 @@ EXTENT -179 -90 179 90
 STATUS ON   # Draw map, not just scalebar
 SIZE 800 650 # Set default image size if not set in URL
 
-CONFIG "MS_ERRORFILE" "stderr" # Log to apache error.log
+#CONFIG "MS_ERRORFILE" "stderr" # Log to apache error.log
 
 # Put MapServer inline with the OGC spec for scale calculations
 # See: WMS 1.3.0 spec Section 7.2.4.6.9
