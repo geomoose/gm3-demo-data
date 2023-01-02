@@ -33,6 +33,7 @@ MAP
 		METADATA
 			'ows_title' 'Pipelines'
 			INCLUDE '../../common_metadata.map'
+			'wfs_getfeature_formatlist' 'gml,geojson'
 		END
 	END
 
