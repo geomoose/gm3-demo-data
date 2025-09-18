@@ -1,52 +1,21 @@
 # GeoMoose for Docker
-FROM ubuntu:bionic
+FROM docker.io/debian:13
 MAINTAINER Dan "Ducky" Little <@theduckylittle>
 
 ENV LANG C.UTF-8
 # RUN update-locale LANG=C.UTF-8
 
-RUN apt-get update
-
 # Update and upgrade system
-RUN apt-get -qq update --fix-missing && apt-get -qq --yes upgrade
+RUN find /etc/apt/sources.list* -type f -exec sed -i 's/Types: deb/Types: deb deb-src /' '{}' + && \
+    apt-get -qq update --fix-missing && apt-get -qq --yes upgrade && \
+    apt-get install -y apache2 git supervisor
 
-# Install mapcache compilation prerequisites
-RUN apt-get install -y software-properties-common g++ make cmake wget git openssh-server
+# Install MapServer compilation prerequisites
+RUN apt-get build-dep -y mapserver
+RUN apt-get install -y libexempi-dev
 
-# Install mapcache dependencies provided by Ubuntu repositories
-RUN apt-get install -y \
-    libxml2-dev \
-    libxslt1-dev \
-    libproj-dev \
-    libfribidi-dev \
-    libcairo2-dev \
-    librsvg2-dev \
-    libmysqlclient-dev \
-    libpq-dev \
-    libcurl4-gnutls-dev \
-    libexempi-dev \
-    libgdal-dev \
-    libprotobuf-c-dev \
-    protobuf-c-compiler \
-    libpthread-stubs0-dev \
-    libharfbuzz-dev \
-    apache2 \
-    apache2-dev \
-    curl
-
-# Install the Apache Worker MPM (Multi-Procesing Modules)
-
-# RUN apt-get install apache2-mpm-worker
-# Enable these Apache modules
-RUN a2enmod actions cgi alias headers
-
-# Install supervisor
-RUN apt-get install -y supervisor
-RUN mkdir -p /var/log/supervisor
-COPY etc/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-# Install Mapserver itself
-RUN git clone https://github.com/mapserver/mapserver/ /usr/local/src/mapserver
+# Install MapServer itself
+RUN git clone --depth=1 --branch=branch-8-4 https://github.com/mapserver/mapserver /usr/local/src/mapserver
 
 # Compile Mapserver for Apache
 RUN mkdir /usr/local/src/mapserver/build && \
@@ -65,7 +34,6 @@ RUN mkdir /usr/local/src/mapserver/build && \
         -DWITH_GEOS=ON \
         -DWITH_POSTGIS=ON \
         -DUSE_GDAL=ON \
-        -DWITH_OGR=ON \
         -DWITH_CURL=ON \
         -DWITH_CLIENT_WMS=ON \
         -DWITH_CLIENT_WFS=ON \
@@ -84,11 +52,18 @@ RUN mkdir /usr/local/src/mapserver/build && \
 RUN chmod o+x /usr/local/bin/mapserv
 RUN ln -s /usr/local/bin/mapserv /usr/lib/cgi-bin/mapserv
 RUN chmod 755 /usr/lib/cgi-bin
+COPY etc/mapserver.conf /usr/local/etc/mapserver.conf
+
 
 # Configure localhost in Apache
+RUN a2enmod actions cgi alias headers
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 RUN echo "ErrorLog /dev/stdout" >> /etc/apache2/apache2.conf
 COPY etc/000-default.conf /etc/apache2/sites-available/
+
+# Configure supervisor
+RUN mkdir -p /var/log/supervisor
+COPY etc/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Install TinyOWS
 
@@ -127,7 +102,7 @@ COPY etc/000-default.conf /etc/apache2/sites-available/
 # RUN mkdir -p /data
 
 # clone the data repo into a useful directory.
-RUN git clone https://github.com/geomoose/gm3-demo-data.git /data
+RUN git clone --depth=1 https://github.com/geomoose/gm3-demo-data.git /data
 RUN chown www-data:www-data -R /data
 
 # Restart Apache
